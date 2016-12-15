@@ -1,0 +1,40 @@
+{
+  "name": "learn_words",
+  "description": "A small service for learning foreign words",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AZbang/LearnWords.git"
+  },
+  "keywords": [
+    "learn",
+    "words",
+    "languages",
+    "services",
+    "web"
+  ],
+  "author": "azbang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AZbang/LearnWords/issues"
+  },
+  "homepage": "https://github.com/AZbang/LearnWords#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-connect": "^4.1.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4"
+  }
+}
