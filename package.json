@@ -15,7 +15,9 @@
     "words",
     "languages",
     "services",
-    "web"
+    "web",
+    "box2d",
+    "physics"
   ],
   "author": "azbang",
   "license": "MIT",

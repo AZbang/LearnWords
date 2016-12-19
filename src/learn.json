@@ -1,0 +1,10 @@
+[
+	{"from": "Dog", "to": "Собака"},
+	{"from": "Apple", "to": "Яблоко"},
+	{"from": "Pen", "to": "Ручка"},
+	{"from": "Home", "to": "Дом"},
+	{"from": "Friend", "to": "Друг"},
+	{"from": "Family", "to": "Семья"},
+	{"from": "Tree", "to": "Дерево"},
+	{"from": "Key", "to": "Ключ"},
+]

@@ -1,0 +1,33 @@
+{
+  "name": "learn_words",
+  "description": "A small service for learning foreign words",
+  "main": "gulpfile.js",
+  "authors": [
+    "azbang"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "learn",
+    "words",
+    "languages",
+    "services",
+    "web",
+    "box2d",
+    "physics"
+  ],
+  "homepage": "https://github.com/AZbang/LearnWords",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "box2d.js": "*",
+    "jquery": "^3.1.1",
+    "normalize-css": "^5.0.0",
+    "EaselJS": "^0.8.2",
+    "PhysicsJS": "^0.7.0"
+  }
+}
