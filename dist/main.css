@@ -50,34 +50,6 @@ body {
 	cursor: pointer;
 }
 
-span.char1 {
-    border: 10px solid rgb(255, 94, 94);
-    width: 115px;
-    background: rgb(255, 112, 112);
-    margin-right: 10px;
-}
-span.char2 {
-    border: 10px solid #F69D5D;
-    width: 115px;
-    background: #FFAF5D;
-    margin-right: 10px;
-    text-transform: uppercase;
-}
-span.char3 {
-    border: 10px solid rgb(255, 94, 94);
-    width: 115px;
-    background: rgb(255, 112, 112);
-    margin-right: 10px;
-}
-span.char4 {
-    border: 10px solid rgb(255, 94, 94);
-    width: 115px;
-    background: rgb(255, 112, 112);
-    margin-right: 10px;
-}
-span.char5 {
-    border: 10px solid rgb(255, 94, 94);
-    width: 115px;
-    background: rgb(255, 112, 112);
-    margin-right: 10px;
+.pjs-rectangle {
+    background: rgb(255, 255, 255);
 }

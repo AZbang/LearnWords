@@ -24,10 +24,8 @@
     "tests"
   ],
   "dependencies": {
-    "box2d.js": "*",
     "jquery": "^3.1.1",
     "normalize-css": "^5.0.0",
-    "EaselJS": "^0.8.2",
-    "PhysicsJS": "^0.7.0"
+    "PhysicsJS": "^0.7.0",
   }
 }
