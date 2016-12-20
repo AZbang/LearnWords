@@ -1,19 +1,17 @@
-class Letter {
+class Ball {
 	constructor(world, config) {
 		this.world = world;
 		this.physic = world.physic;
 
-		this.letter = config.letter || 'A';
 		this.x = config.x || 0;
 		this.y = config.y || 0;
-		this.w = config.w || 50;
-		this.h = config.h || 50;
+		this.r = config.r || 25;
+		this.fill = config.fill || '#fff';
 
-		this.body = Physics.body('rectangle', {
+		this.body = Physics.body('circle', {
 			x: this.x,
 			y: this.y,
-			width: this.w,
-			height: this.h,
+			radius: this.r,
 			vx: config.vx,
 			vy: config.vy,
 			mass: config.mass || 1
@@ -23,9 +21,9 @@ class Letter {
 
 	update() {
 		$(this.body.view)
-			.addClass('letter-box')
-			.html(this.letter);
+			.css('background', this.fill)
+			.addClass('ball');
 	}
 }
 
-module.exports = Letter;
+module.exports = Ball;

@@ -17,12 +17,12 @@ var path = {
 	root: './',
 	build: {
 		js: 'dist',
-		css: 'dist',
+		css: 'dist/css',
 		img: 'dist/img'
 	},
 	src: {
 		js: 'src/js/app.js',
-		css: 'src/css/main.css',
+		css: 'src/css/*.css',
 		img: 'src/img/**/*.*'
 	},
 	watch: {

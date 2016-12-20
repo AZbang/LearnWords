@@ -1,10 +1,12 @@
+@import url(./font.css);
+
 html, body {
 	width: 100%;
 	height: 100%;
 }
 
 body {
-	background: #429BFF;
+	background: #E3F2FD;
 	overflow: hidden;
 }
 
@@ -45,16 +47,17 @@ body {
 	border-bottom: 1px solid #fff;
 }
 
-#submit {
-	color: #fff;
-	cursor: pointer;
+#paper {
+	overflow: hidden;
 }
 
 .letter-box {
-    background: #fff;
-    font-size: 70px;
-    text-align: center;
-    line-height: 110px;
-    box-sizing: border-box;
-    border: 10px solid rgb(204, 204, 204);
+	color: #607D8B;
+    font-size: 125px;
+    text-align: right;
+    line-height: 115px;
+    font-family: 'BebasNeueRegular', sans-serif;
+}
+.pjs-circle {
+	background: orange;
 }

@@ -1,4 +1,6 @@
 const Letter = require('./Letter');
+const Ball = require('./Ball');
+
 
 class World {
 	constructor() {
@@ -16,9 +18,8 @@ class World {
 		});
 		this.physic.add(this.renderer);
 
-
 		this.letters = [];
-
+		this.balls = [];
 
 		this._createPhysic();
 		this._bindEvents();
@@ -46,8 +47,8 @@ class World {
 				restitution: 0.3
 			})
 		);
-	    this.constantAccekeration = this.physic.add(Physics.behavior('constant-acceleration'));
-	    this.bodyImpulseResponse = this.physic.add(Physics.behavior('body-impulse-response'));
+		this.constantAccekeration = this.physic.add(Physics.behavior('constant-acceleration'));
+		this.bodyImpulseResponse = this.physic.add(Physics.behavior('body-impulse-response'));
 		this.bodyCollisionDetection = this.physic.add(Physics.behavior('body-collision-detection'));
 		this.sweepPrune = this.physic.add(Physics.behavior('sweep-prune'));
 	}
@@ -55,6 +56,12 @@ class World {
 	addLetterBox(config) {
 		this.letters.push(
 			new Letter(this, config)
+		);
+	}
+
+	addBall(config) {
+		this.balls.push(
+			new Ball(this, config)
 		);
 	}
 
@@ -73,6 +80,9 @@ class World {
 	update() {
 		for(let i = 0; i < this.letters.length; i++) {
 			this.letters[i].update();
+		}
+		for(let i = 0; i < this.balls.length; i++) {
+			this.balls[i].update();
 		}
 		this.physic.render();
 	}
