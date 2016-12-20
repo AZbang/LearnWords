@@ -49,6 +49,11 @@ body {
 	cursor: pointer;
 }
 
-.pjs-rectangle {
-    background: rgb(255, 255, 255);
+.letter-box {
+    background: #fff;
+    font-size: 70px;
+    text-align: center;
+    line-height: 110px;
+    box-sizing: border-box;
+    border: 10px solid rgb(204, 204, 204);
 }
