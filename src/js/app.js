@@ -1,6 +1,18 @@
 const World = require('./World');
+const helper = require('./helper');
 
 $(() => {
+	$(window).keydown((e) => {
+		if(e.which == 8) 
+			$('.user-letter')
+				.last()
+				.remove();
+
+		else
+			$('#letters')
+				.append(`<span class="user-letter">${helper.getChar(e)}</span>`);
+	});
+
 	var world = new World();
 
 	var word = ('ЯБЛОКО').split('');
