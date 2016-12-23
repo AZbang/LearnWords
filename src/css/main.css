@@ -14,19 +14,20 @@ body {
 	position: absolute;
 	top: 50%;
 }
-#enter-word {
+#submit {
     height: 60px;
     margin: 100px auto;
     display: block;
     width: 480px;
     text-align: center;
     border: none;
+    background: transparent;
     color: rgb(96, 125, 139);
     font-size: 60px;
     font-family: 'BebasNeueRegular', sans-serif;
 }
 
-#enter-word:focus {
+#submit:focus {
 	outline: none;
 }
 
@@ -37,7 +38,6 @@ body {
 }
 
 .letter-box {
-	color: #607D8B;
     font-size: 125px;
     text-align: right;
     line-height: 115px;

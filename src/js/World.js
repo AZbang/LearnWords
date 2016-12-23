@@ -38,15 +38,16 @@ class World {
 
 	_createPhysic() {
 		// create border
-		this.viewportBounds = Physics.aabb(0, 0, this.w, this.h/2);
+		this.viewportBounds = Physics.aabb(0, -200, this.w, this.h/2);
 
 		//add behaviors
-		this.edgeCollisionDetection = this.physic.add(
-			Physics.behavior('edge-collision-detection', {
-				aabb: this.viewportBounds,
-				restitution: 0.3
-			})
-		);
+		this.edgeCollisionDetection = Physics.behavior('edge-collision-detection', {
+			aabb: this.viewportBounds,
+			restitution: 0.3
+		});
+		this.physic.add(this.edgeCollisionDetection);
+
+		// add behaviors
 		this.constantAccekeration = this.physic.add(Physics.behavior('constant-acceleration'));
 		this.bodyImpulseResponse = this.physic.add(Physics.behavior('body-impulse-response'));
 		this.bodyCollisionDetection = this.physic.add(Physics.behavior('body-collision-detection'));
@@ -54,16 +55,25 @@ class World {
 	}
 
 	addLetterBox(config) {
-		this.letters.push(
-			new Letter(this, config)
-		);
+		var obj = new Letter(this, this.letters.length, config)
+		this.letters.push(obj);
 	}
 
 	addBall(config) {
-		this.balls.push(
-			new Ball(this, config)
-		);
+		var obj = new Ball(this, this.balls.length, config);
+		this.balls.push(obj);
 	}
+
+	removeFloor() {
+		this.viewportBounds = Physics.aabb(0, -200, this.w, this.h+200);
+		this.edgeCollisionDetection.setAABB(this.viewportBounds);
+	}
+	addFloor() {
+		// create border
+		this.viewportBounds = Physics.aabb(0, -200, this.w, this.h/2);
+		this.edgeCollisionDetection.setAABB(this.viewportBounds);
+	}
+
 
 	render(data) {
 		// magic to trigger GPU
@@ -78,6 +88,20 @@ class World {
 	}
 
 	update() {
+		for(let i = 0; i < this.letters.length; i++) {
+			if(this.letters[i].body.state.pos.y > this.h) {
+				this.physic.removeBody(this.letters[i].body);
+				this.letters.splice(i, 1);
+			}
+		}
+		for(let i = 0; i < this.balls.length; i++) {
+			if(this.balls[i].body.state.pos.y > this.h) {
+				this.physic.removeBody(this.balls[i].body);
+				this.balls.splice(i, 1);
+			}
+		}
+
+
 		for(let i = 0; i < this.letters.length; i++) {
 			this.letters[i].update();
 		}
