@@ -54,7 +54,7 @@ class LearnWords {
 
 	newWord(config) {
 		this.word = this.learn[Math.floor(Math.random()*this.learn.length)];
-		var _word = this.word.ru.split('');
+		var _word = this.word.from.split('');
 		var maxWordWidth = (_word.length+1)*(50+config.pd)/2+config.pd;
 
 		for(let i = 0; i < _word.length; i++) {
@@ -77,11 +77,11 @@ class LearnWords {
 
 	checkWords(word) {
 		for(let i = 0; i < this.world.letters.length; i++) {			
-			if(this.word.en.toLowerCase() === word.toLowerCase())
+			if(this.word.to.toLowerCase() === word.toLowerCase())
 				this.world.letters[i].fill = '#3BFF56';
 			else {
 				var notify = humane.create({ timeout: 3000, baseCls: 'humane' })
-				notify.log('Правильно будет: ' + this.word.en);
+				notify.log('Правильно будет: ' + this.word.to);
 				this.world.letters[i].fill = '#FF5A5A';
 			}
 		}
