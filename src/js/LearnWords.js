@@ -6,40 +6,62 @@ class LearnWords {
 		this.world = new World();
 
 		this.$submit = $('#submit');
-
+		this.$score = $('#score');
+		this.$slowly = $('#slowly-img');
 		this.$submit.focus();
-		this.$submit.change(() => {
-			this.world.removeFloor();
-			clearTimeout(this.timer);
-			
-			this.checkWords(this.$submit.val());
-			this.$submit.val('');
-
-			setTimeout(() => {
-				this.createParticles();
-				this.world.addFloor();
-				this.newWord({
-					pd: 0,
-					ox: 0,
-					oy: 200,
-					w: 50,
-					h: 90,
-					vx: 0.01,
-					vy: 0,
-					mass: 10		
-				});
-			}, 3000);
-		});
 
 
+		this.score = +localStorage.getItem('score') || 0;
+		this.$score.html(this.score);
 
 		this.palette = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#2196F3', '#3F51B5', '#8BC34A'];
 		this.createParticles();
 		this.word;
+
+		this._bindEvents();
+	}
+	_bindEvents() {
+		$(window).blur(() => {
+			this.world.physic.pause();
+			clearInterval(this.timerSpawnParticles);
+		});
+		$(window).focus(() => {
+			this.world.physic.unpause();
+			this.createParticles();
+		});
+
+		this.$submit.change(this._submitUserWord.bind(this));
+	}
+
+	_submitUserWord() {
+		this.world.removeFloor();
+		clearInterval(this.timerSpawnParticles);
+		clearTimeout(this.timerShowSlowly);
+		this.$slowly.animate({opacity: 0}, 2000);
+		
+		this.checkWords(this.$submit.val());
+		this.$submit.val('');
+
+		setTimeout(() => {
+			this.createParticles();
+			this.world.addFloor();
+			this.newWord({
+				pd: 0,
+				ox: 0,
+				oy: 200,
+				w: 50,
+				h: 90,
+				vx: 0.01,
+				vy: 0,
+				mass: 10		
+			});
+		}, 3000);
 	}
 
 	createParticles() {
-		this.timer = setInterval(() => {
+		this.timerSpawnParticles = setInterval(() => {
+			if(this.world.balls.length > 60) return;
+
 			this.world.addBall({
 				x: this.world.w/2-25,
 				y: -200,
@@ -73,18 +95,24 @@ class LearnWords {
 					letter: letter
 				});
 		}
+
+		setTimeout(() => {
+			this.timerShowSlowly = this.$slowly.animate({opacity: 1}, 5000);
+		}, 10000);
 	}
 
 	checkWords(word) {
-		for(let i = 0; i < this.world.letters.length; i++) {			
-			if(this.word.to.toLowerCase() === word.toLowerCase())
-				this.world.letters[i].fill = '#3BFF56';
-			else {
-				var notify = humane.create({ timeout: 3000, baseCls: 'humane' })
-				notify.log('Правильно будет: ' + this.word.to);
-				this.world.letters[i].fill = '#FF5A5A';
-			}
-		}
+		var isCurrent = this.word.to.toLowerCase() === word.toLowerCase();
+
+		for(let i = 0; i < this.world.letters.length; i++)		
+			this.world.letters[i].fill = isCurrent ? '#3BFF56' : '#FF5A5A';
+
+		if(isCurrent) {
+			this.score++;
+			this.$score.html(this.score);
+			localStorage.setItem('score', this.score);
+		} else humane.log('Правильно будет: ' + this.word.to, {timeout: 3000});
+
 	}
 }
 

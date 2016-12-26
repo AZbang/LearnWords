@@ -29,6 +29,20 @@ class World {
 		//events
 		this.physic.on('render', this.render.bind(this));
 		this.physic.on('step', this.update.bind(this));
+		this.physic.on({
+			'interact:poke': (pos) => {
+				this.physic.wakeUpAll();
+				this.attractor.position(pos);
+				this.physic.add(this.attractor);
+			}
+			,'interact:move': (pos) => {
+				this.attractor.position(pos);
+			}
+			,'interact:release': () => {
+				this.physic.wakeUpAll();
+				this.physic.remove(this.attractor);
+			}
+		});
 
 		// create ticker event
 		Physics.util.ticker.on((time) => {
@@ -47,11 +61,20 @@ class World {
 		});
 		this.physic.add(this.edgeCollisionDetection);
 
+		// add interactive
+		this.physic.add(Physics.behavior('interactive', {
+			el: this.renderer.container,
+		}));
+		this.attractor = Physics.behavior('attractor', {
+			order: 0,
+			strength: 0.002
+		});
+
 		// add behaviors
-		this.constantAccekeration = this.physic.add(Physics.behavior('constant-acceleration'));
-		this.bodyImpulseResponse = this.physic.add(Physics.behavior('body-impulse-response'));
-		this.bodyCollisionDetection = this.physic.add(Physics.behavior('body-collision-detection'));
-		this.sweepPrune = this.physic.add(Physics.behavior('sweep-prune'));
+		this.physic.add(Physics.behavior('constant-acceleration'));
+		this.physic.add(Physics.behavior('body-impulse-response'));
+		this.physic.add(Physics.behavior('body-collision-detection'));
+		this.physic.add(Physics.behavior('sweep-prune'));
 	}
 
 	addLetterBox(config) {

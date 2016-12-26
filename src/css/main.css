@@ -6,21 +6,29 @@ html, body, #ui {
 }
 
 body {
+	user-select: none;
 	background: #E3F2FD;
 	overflow: hidden;
 }
 
 #ui {
 	position: absolute;
-	top: 50%;
+	top: 0;
+	left: 0;
 }
 #submit {
+	position: absolute;
     height: 60px;
-    margin: 100px auto;
-    display: block;
+    top: 70%;
+    left: 50%;
     width: 480px;
+    margin-left: -240px;
+    display: block;
     text-align: center;
-    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+	border-bottom: 2px solid rgb(96, 125, 139);
     background: transparent;
     color: rgb(96, 125, 139);
     font-size: 60px;
@@ -31,18 +39,50 @@ body {
 	outline: none;
 }
 
-
-#paper {
-	overflow: hidden;
+#state {
 	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-size: 40px;
+	color: #778695;
+    font-family: 'BebasNeueRegular', sans-serif;
+}
+
+#score {
+	color: #FEB72E;
+}
+
+
+#slowly-img {
+    position: absolute;
+    bottom: -105px;
+    right: -60px;
+    width: 300px;
+    height: 280px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    opacity: 0;
+    z-index: 1;
 }
 
 .letter-box {
+	cursor: pointer;
     font-size: 125px;
     text-align: right;
     line-height: 115px;
     font-family: 'BebasNeueRegular', sans-serif;
+    z-index: 1000;
 }
 .pjs-circle {
 	background: orange;
+	cursor: pointer;
+	z-index: 1000;
 }
+
+/*#deadline {
+	width: 100%;
+	height: 10px;
+	position: absolute;
+	top: 30%;
+	border-bottom: 5px dashed #FF6262;
+}*/
