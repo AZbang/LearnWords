@@ -96,8 +96,8 @@ class LearnWords {
 				});
 		}
 
-		setTimeout(() => {
-			this.timerShowSlowly = this.$slowly.animate({opacity: 1}, 5000);
+		this.timerShowSlowly = setTimeout(() => {
+			this.$slowly.animate({opacity: 1}, 5000);
 		}, 10000);
 	}
 
