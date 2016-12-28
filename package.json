@@ -3,9 +3,6 @@
   "description": "A small service for learning foreign words",
   "version": "1.0.0",
   "main": "gulpfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AZbang/LearnWords.git"
@@ -38,5 +35,9 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.4"
+  },
+  "dependencies": {
+    "node-static": "^0.7.9",
+    "prompt": "^1.0.0"
   }
 }

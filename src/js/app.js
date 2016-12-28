@@ -18,7 +18,7 @@ $(() => {
 		});
 	};
 
-	$.getJSON('costum_words/learn.json')
+	$.getJSON('custom_learn.json')
 		.done((data) => {
 			data_learn = data;
 		})
