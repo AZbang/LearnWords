@@ -1,4 +1,4 @@
-![Banner](https://pp.vk.me/c836729/v836729691/171d4/o58JCh-R47k.jpg)
+![Banner](https://github.com/AZbang/media-storage/blob/master/LearnWords/main.jpg)
 
 > LearnWords - это небольшой интерактивный сервис для изучения иностранных слов.
 
@@ -23,7 +23,7 @@
 
 > **ВАЖНО! На вашем компьютере должен быть установлен NodeJS**
 
-===
+------
 
 # Автор
 **Андрей Жевлаков (@AZbang)**
