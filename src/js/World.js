@@ -14,7 +14,7 @@ class World {
 			el: 'paper',
 			width: this.w,
 			height: this.h,
-			meta: false, 
+			meta: false,
 		});
 		this.physic.add(this.renderer);
 
@@ -24,7 +24,7 @@ class World {
 		this._createPhysic();
 		this._bindEvents();
 		Physics.util.ticker.start();
-	}	
+	}
 	_bindEvents() {
 		//events
 		this.physic.on('render', this.render.bind(this));
@@ -34,11 +34,11 @@ class World {
 				this.physic.wakeUpAll();
 				this.attractor.position(pos);
 				this.physic.add(this.attractor);
-			}
-			,'interact:move': (pos) => {
+			},
+			'interact:move': (pos) => {
 				this.attractor.position(pos);
-			}
-			,'interact:release': () => {
+			},
+			'interact:release': () => {
 				this.physic.wakeUpAll();
 				this.physic.remove(this.attractor);
 			}

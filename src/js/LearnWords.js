@@ -1,3 +1,4 @@
+const helper = require('./helper');
 const World = require('./World');
 
 class LearnWords {
@@ -23,7 +24,7 @@ class LearnWords {
 	_bindEvents() {
 		$(window).blur(() => {
 			this.world.physic.pause();
-			clearInterval(this.timerSpawnParticles);
+			this.timerSpawnParticles && clearInterval(this.timerSpawnParticles);
 		});
 		$(window).focus(() => {
 			this.world.physic.unpause();
@@ -35,10 +36,8 @@ class LearnWords {
 
 	_submitUserWord() {
 		this.world.removeFloor();
-		clearInterval(this.timerSpawnParticles);
-		clearTimeout(this.timerShowSlowly);
-		this.$slowly.animate({opacity: 0}, 2000);
-		
+		this.timerSpawnParticles && clearInterval(this.timerSpawnParticles);
+
 		this.checkWords(this.$submit.val());
 		this.$submit.val('');
 
@@ -53,14 +52,16 @@ class LearnWords {
 				h: 90,
 				vx: 0.01,
 				vy: 0,
-				mass: 10		
+				mass: 10
 			});
 		}, 3000);
 	}
 
 	createParticles() {
+		if(helper.isMobile()) return;
+
 		this.timerSpawnParticles = setInterval(() => {
-			if(this.world.balls.length > 60) return;
+			if(this.world.balls.length > 20) return;
 
 			this.world.addBall({
 				x: this.world.w/2-25,
@@ -71,7 +72,7 @@ class LearnWords {
 				mass: 2,
 				fill: this.palette[Math.floor(Math.random()*this.palette.length)]
 			});
-		}, 300);
+		}, 600);
 	}
 
 	newWord(config) {
@@ -85,7 +86,7 @@ class LearnWords {
 
 			if(letter !== ' ')
 				this.world.addLetterBox({
-					x: x-maxWordWidth+this.world.w/2+config.ox, 
+					x: x-maxWordWidth+this.world.w/2+config.ox,
 					y: config.oy,
 					w: config.w,
 					h: config.h,
@@ -95,16 +96,12 @@ class LearnWords {
 					letter: letter
 				});
 		}
-
-		this.timerShowSlowly = setTimeout(() => {
-			this.$slowly.animate({opacity: 1}, 5000);
-		}, 10000);
 	}
 
 	checkWords(word) {
 		var isCurrent = this.word.to.toLowerCase() === word.toLowerCase();
 
-		for(let i = 0; i < this.world.letters.length; i++)		
+		for(let i = 0; i < this.world.letters.length; i++)
 			this.world.letters[i].fill = isCurrent ? '#3BFF56' : '#FF5A5A';
 
 		if(isCurrent) {
